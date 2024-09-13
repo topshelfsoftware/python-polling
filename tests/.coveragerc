@@ -1,0 +1,7 @@
+[run]
+source = 
+    topshelfsoftware_polling
+
+[report]
+omit =
+    tests/*

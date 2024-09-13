@@ -40,11 +40,11 @@ def backoff_exponential_with_full_jitter(
 
     base_interval: float, optional
         Initial value (attempt=0) will be a random number between
-        0 and the base interval.
+        0 and the base interval (in sec).
         Default is `1.0`.
 
     max_interval: float, optional
-        Maximum interval between attempts.
+        Maximum interval (in sec) between attempts.
         Default is `60.0`.
 
     Returns

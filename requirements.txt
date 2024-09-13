@@ -1,6 +1,6 @@
 --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org 
 # package deps
-topshelfsoftware-util @ git+https://github.com/topshelfsoftware/python-utility.git@v1.1.0
+topshelfsoftware-logging @ git+https://github.com/topshelfsoftware/python-logging.git@v1.0.0
 
 # dev tools
 poetry~=1.8

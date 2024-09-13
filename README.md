@@ -1,3 +1,3 @@
 # python-polling
 
-A python utility to await via polling.
+Poll a target function for status.

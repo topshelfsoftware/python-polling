@@ -1,0 +1,7 @@
+{
+    "description": "Verify constant step yields provided step with no changes",
+    "input": {
+        "step": 5
+    },
+    "expected_output": 5
+}

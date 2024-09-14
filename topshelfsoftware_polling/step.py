@@ -1,10 +1,27 @@
-"""Gradually increase interval between consecutive polling attempts."""
+"""Functions for calculating interval (step) between
+consecutive polling attempts."""
 
 import random
 
 
-def backoff_linear(step: float, factor: float = 2.0) -> float:
-    """Linearly change the interval between polling attempts.
+def step_constant(step: float) -> float:
+    """Maintain constant delay between polling attempts.
+
+    Parameters
+    ----------
+    step: float
+        Number (in sec).
+
+    Returns
+    -------
+    float
+        Step (in sec).
+    """
+    return step
+
+
+def step_linear_backoff(step: float, factor: float = 2.0) -> float:
+    """Linearly increase the interval between polling attempts.
 
     Parameters
     ----------
@@ -23,13 +40,13 @@ def backoff_linear(step: float, factor: float = 2.0) -> float:
     return step * factor
 
 
-def backoff_exponential_with_full_jitter(
+def step_exponential_backoff_with_jitter(
     attempt: int,
     base_interval: float = 1,
     max_interval: float = 60,
 ):
-    """Grow delay exponentially with random jitter added to avoid synchronized
-    retries from multiple clients.
+    """Increase delay exponentially with random jitter added to avoid
+    synchronized retries from multiple clients.
 
     See https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter
 

@@ -3,7 +3,7 @@ name: Package Build
 on:
   push:
     branches:
-      - init
+      - main
   pull_request:
     branches:
       - main

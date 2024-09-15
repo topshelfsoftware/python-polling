@@ -1,0 +1,22 @@
+{
+    "description": "Verify PollTimeLimitReached exception is raised when polling function that returns a falsy and timeout is 0.02 sec",
+    "input": {
+        "lambda_function": "lambda: False",
+        "poll_kwargs": {
+            "args": [],
+            "step_fun": "step_exponential_backoff",
+            "step_fun_kwargs": {
+                "backoff_rate": 2,
+                "base_interval": 0.01
+            },
+            "max_attempts": 4,
+            "timeout": 0.02
+        }
+    },
+    "expected_output": {
+        "error": {
+            "type": "PollTimeLimitReached",
+            "message": "Poll was not successful in time limit (0.02 seconds)"
+        }
+    }
+}

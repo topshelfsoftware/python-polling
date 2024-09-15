@@ -1,0 +1,20 @@
+{
+    "description": "Verify PollAttemptLimitReached exception is raised when polling function that returns a falsy and max attempts is 1",
+    "input": {
+        "lambda_function": "lambda: False",
+        "poll_kwargs": {
+            "args": [],
+            "step_fun": "step_constant",
+            "step_fun_kwargs": {
+                "step": 0.01
+            },
+            "max_attempts": 1
+        }
+    },
+    "expected_output": {
+        "error": {
+            "type": "PollAttemptLimitReached",
+            "message": "Poll was not successful in attempt limit (1)"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "description": "Verify polling simple anonymous function that adds two numbers succeeds",
+    "input": {
+        "lambda_function": "lambda x, y: x + y",
+        "poll_kwargs": {
+            "args": [1, 2]
+        }
+    },
+    "expected_output": {
+        "res": 3
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "description": "Verify ValueError is raised when polling function that raises ValueError and no exceptions are ignored",
+    "input": {
+        "lambda_function": "lambda: (_ for _ in ()).throw(ValueError('raising error from target func'))",
+        "poll_kwargs": {
+            "args": []
+        }
+    },
+    "expected_output": {
+        "error": {
+            "type": "ValueError",
+            "message": "raising error from target func"
+        }
+    }
+}

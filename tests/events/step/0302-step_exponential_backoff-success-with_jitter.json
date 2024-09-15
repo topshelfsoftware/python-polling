@@ -1,0 +1,12 @@
+{
+    "description": "Verify exponential backoff with full jitter yields step within expected bounds when attempt is 9",
+    "input": {
+        "attempt": 9,
+        "max_interval": 300,
+        "jitter": true
+    },
+    "expected_output": {
+        "min": 0,
+        "max": 300
+    }
+}

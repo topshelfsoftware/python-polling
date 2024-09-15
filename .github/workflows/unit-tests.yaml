@@ -1,0 +1,57 @@
+name: Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-test-python3:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-ver: ['3.12', '3.11', '3.10', '3.9']
+
+    steps:
+      - name: Check out repo  # for deps, source code and unit tests
+        uses: actions/checkout@v4
+
+      - name: Install Python ${{ matrix.python-ver }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-ver }}
+
+      - name: Setup dev environment
+        run: make setup
+
+      - name: Run unit tests with pytest
+        run: make test
+
+      - name: Store the coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-python${{ matrix.python-ver }}
+          path: ./coverage.xml
+
+  upload-code-cov:
+    needs: unit-test-python3
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repo  # for codecov config file
+        uses: actions/checkout@v4
+
+      - name: Retrieve coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report-python3.12
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

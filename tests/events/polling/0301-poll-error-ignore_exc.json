@@ -1,0 +1,20 @@
+{
+    "description": "Verify PollAttemptLimitReached exception is raised when polling function that raises ValueError and ValueError exception is ignored",
+    "input": {
+        "lambda_function": "lambda: (_ for _ in ()).throw(ValueError('raising error from target func'))",
+        "poll_kwargs": {
+            "args": [],
+            "step_fun_kwargs": {
+                "base_interval": 0.01
+            },
+            "max_attempts": 1,
+            "ignore_exceptions": ["ValueError"]
+        }
+    },
+    "expected_output": {
+        "error": {
+            "type": "PollAttemptLimitReached",
+            "message": "Poll was not successful in attempt limit (1)"
+        }
+    }
+}

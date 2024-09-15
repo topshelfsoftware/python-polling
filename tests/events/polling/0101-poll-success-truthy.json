@@ -1,0 +1,12 @@
+{
+    "description": "Verify polling simple anonymous function that returns a truthy succeeds",
+    "input": {
+        "lambda_function": "lambda: True",
+        "poll_kwargs": {
+            "args": []
+        }
+    },
+    "expected_output": {
+        "res": true
+    }
+}

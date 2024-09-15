@@ -1,0 +1,11 @@
+{
+    "description": "Verify exponential backoff without jitter yields expected step when base interval is 3.0 and attempt is 1",
+    "input": {
+        "attempt": 1,
+        "base_interval": 3.0,
+        "jitter": false
+    },
+    "expected_output": {
+        "step": 3.0
+    }
+}

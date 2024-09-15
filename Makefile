@@ -1,5 +1,12 @@
 .PHONY: setup update clean \
-		format lint test package
+		format lint test package \
+		deploy-layer
+
+####### USER INPUTS #######
+AWS_PROFILE :=				# required, no default value
+AWS_REGION ?= us-east-1
+S3_BUCKET :=				# required, no default value
+TAGS := 					# required, no default value
 
 ####### CONSTANTS #######
 PROJ_ROOT_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
@@ -82,3 +89,17 @@ package:
 		cp $(PROJ_ROOT_DIR)/dist/$(PKG_NAME)-$(PKG_VER)*.whl $(LOCAL_PYPI_DIR) && \
 		echo "Copied wheel to $(LOCAL_PYPI_DIR)"; \
 	fi
+
+# Lambda layer deployment
+deploy-layer: check-user-inp
+	export AWS_PROFILE=$(AWS_PROFILE) && \
+		cd $(PROJ_ROOT_DIR) && \
+		sam build --config-file samconfig.toml && \
+		sam deploy --config-file samconfig.toml --config-env default --region $(AWS_REGION) --s3-bucket $(S3_BUCKET) --tags $(TAGS)
+
+# ensure the required variables are defined by the user
+check-user-inp:
+	$(if $(AWS_PROFILE),,$(error AWS_PROFILE is undefined. Usage: make deploy-layer AWS_PROFILE=<aws-profile> S3_BUCKET=<s3-bucket> TAGS="CustomerId={cid} ProjectId={pid}" [AWS_REGION=us-east-1]))
+	$(if $(AWS_REGION),,$(error AWS_REGION is undefined. Usage: make deploy-layer AWS_PROFILE=<aws-profile> S3_BUCKET=<s3-bucket> TAGS="CustomerId={cid} ProjectId={pid}" [AWS_REGION=us-east-1]))
+	$(if $(S3_BUCKET),,$(error S3_BUCKET is undefined. Usage: make deploy-layer AWS_PROFILE=<aws-profile> S3_BUCKET=<s3-bucket> TAGS="CustomerId={cid} ProjectId={pid}" [AWS_REGION=us-east-1]))
+	$(if $(TAGS),,$(error TAGS is undefined. Usage: make deploy-layer AWS_PROFILE=<aws-profile> S3_BUCKET=<s3-bucket> TAGS="CustomerId={cid} ProjectId={pid}" [AWS_REGION=us-east-1]))

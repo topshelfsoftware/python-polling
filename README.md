@@ -2,12 +2,19 @@
 
 Poll a target function for status.
 
+| | |
+| --- | --- |
+| Testing | [![CI - Test](https://github.com/topshelfsoftware/python-polling/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/topshelfsoftware/python-polling/actions/workflows/unit-tests.yaml) [![codecov](https://codecov.io/gh/topshelfsoftware/python-polling/graph/badge.svg?token=YGAMALL0YD)](https://codecov.io/gh/topshelfsoftware/python-polling) |
+| Package | [![Build Status](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml/badge.svg)](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml) ![Package Version](https://img.shields.io/badge/latest-v0.1.0-blue) ![Python Versions](https://img.shields.io/badge/python-3.9_%7C_3.10_%7C_3.11_%7C_3.12-blue?logo=python&logoColor=yellow) |
+| Meta | [![License](https://img.shields.io/github/license/topshelfsoftware/python-polling)](https://github.com/topshelfsoftware/python-polling/blob/main/LICENSE) |
+
 ## Getting Started
 
 ### Prerequisites
 
 1. Python 3.9 | 3.10 | 3.11 | 3.12 installed on system
-2. Optionally, create a file named `local_pypi_dir.txt` in the project root directory (same folder as this `README`)
+2. `aws-sam-cli` with "sam" on system path
+3. Optionally, create a file named `local_pypi_dir.txt` in the project root directory (same folder as this `README`)
     - Contents of file are a single line defining the path to a local directory to be used as a local PyPI repository.
 
 ### Set Up Environment
@@ -48,12 +55,18 @@ make format
 
 ## Deployment
 
-### Package
+### Package and Lambda Layer
 
 Build the `topshelfsoftware-polling` Python package as a wheel and copy it to the local PyPI repository
 
 ```bash
 make package
+```
+
+Further, deploy the package as a Lambda layer with
+
+```bash
+make deploy-layer AWS_PROFILE=<aws-profile> S3_BUCKET=<s3-bucket> TAGS="CustomerId={cid} ProjectId={pid}" [AWS_REGION=us-east-1]
 ```
 
 ## Versioning
@@ -66,6 +79,8 @@ Search the project for the existing package version and update in the following 
 - shields.io badge in this `README`
 - `PKG_VER` variable in the project `Makefile`
 - `version` in the poetry `pyproject.toml`
+- `PackageVersion` parameter in the `samconfig.toml`
+- `topshelfsoftware-polling` package in the `lambda_layer/deps/requirements.txt`
 
 ## Available Modules
 

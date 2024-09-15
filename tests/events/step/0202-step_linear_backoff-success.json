@@ -1,8 +1,0 @@
-{
-    "description": "Verify linear backoff yields correct step with factor of 3",
-    "input": {
-        "step": 2,
-        "factor": 3
-    },
-    "expected_output": 6
-}

@@ -1,1 +1,1 @@
-topshelfsoftware-polling @ git+https://github.com/topshelfsoftware/python-polling.git@v0.1.0
+topshelfsoftware-polling==0.1.0

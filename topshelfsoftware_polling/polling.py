@@ -45,13 +45,13 @@ def poll(
     step_fun: Callable, optional
         A callback function to compute the next step in seconds.
         See `topshelfsoftware_polling.step` for predefined step functions.
-        Default is `topshelfsoftware_polling.step.step_constant`.
+        Default is `topshelfsoftware_polling.step.step_exponential_backoff`.
 
     step_fun_kwargs: dict, optional
         Step function kwargs.
         See `topshelfsoftware_polling.step` for predefined step functions
         and kwargs.
-        Default is `{"step": 1}`.
+        Default is `None`.
 
     timeout: float, optional
         Length of poll in seconds.

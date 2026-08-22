@@ -5,14 +5,14 @@ Poll a target function for status.
 | | |
 | --- | --- |
 | Testing | [![CI - Test](https://github.com/topshelfsoftware/python-polling/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/topshelfsoftware/python-polling/actions/workflows/unit-tests.yaml) [![codecov](https://codecov.io/gh/topshelfsoftware/python-polling/graph/badge.svg?token=YGAMALL0YD)](https://codecov.io/gh/topshelfsoftware/python-polling) |
-| Package | [![Build Status](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml/badge.svg)](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml) ![Package Version](https://img.shields.io/badge/latest-v0.1.0-blue) ![Python Versions](https://img.shields.io/badge/python-3.9_%7C_3.10_%7C_3.11_%7C_3.12-blue?logo=python&logoColor=yellow) |
+| Package | [![Build Status](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml/badge.svg)](https://github.com/topshelfsoftware/python-polling/actions/workflows/build.yaml) ![Package Version](https://img.shields.io/badge/latest-v0.1.0-blue) ![Python Versions](https://img.shields.io/badge/python-3.10_%7C_3.11_%7C_3.12_%7C_3.13-blue?logo=python&logoColor=yellow) |
 | Meta | [![License](https://img.shields.io/github/license/topshelfsoftware/python-polling)](https://github.com/topshelfsoftware/python-polling/blob/main/LICENSE) |
 
 ## Getting Started
 
 ### Prerequisites
 
-1. Python 3.9 | 3.10 | 3.11 | 3.12 installed on system
+1. Python 3.10 | 3.11 | 3.12 | 3.13 installed on system
 2. `aws-sam-cli` with "sam" on system path
 3. Optionally, create a file named `local_pypi_dir.txt` in the project root directory (same folder as this `README`)
     - Contents of file are a single line defining the path to a local directory to be used as a local PyPI repository.
